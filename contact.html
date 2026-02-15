@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page title</title>
+    <link rel="stylesheet" href="style.css"
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P53EGBMW3L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P53EGBMW3L');
+</script>
+</head>
+
+<body>
+    
+    
+  <button class="back-home" onclick="window.location.href='index.html'">← Back to Home</button>
+  
+    
+  <section class="contact-form">
+    <h2>Send Me a Message</h2>
+    <form action="https://formspree.io/f/mreaepkz" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+  
+  
+  <script>
+const form = document.getElementById("contactForm");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // prevent normal form submission
+
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      status.textContent = "Message sent! ✅";
+      status.className = "success";
+      form.reset();
+    } else {
+      status.textContent = "Oops! Something went wrong ❌";
+      status.className = "error";
+    }
+  } catch (error) {
+    status.textContent = "Oops! Something went wrong ❌";
+    status.className = "error";
+  }
+});
+</script>
+
+</body>
+</html>
